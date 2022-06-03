@@ -1,80 +1,252 @@
-body {
-    box-sizing: border-box;
-}
-
-.container {
-    max-width: 425px;
-    margin: 0 auto;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('./fonts/english-mobile-icons/style.css');
 
 :root {
     --primary-color: #6750A4;
     --on-surface-color: #1C1B1F;
     --surface-color: #FFFBFE;
     --outline-color: #79747E;
+    --bg: #24272C;
+    --shadow_light: #fff;
+    --shadow_dark: #000000;
+    --label: #7F8493;
+    --gradient: linear-gradient(to bottom, #2F86FF, #9EECD9);
+    --shadow:
+        -10px -10px 20px var(--shadow_light),
+        10px 10px 20px var(--shadow_dark);
 }
 
-.header {    
-    border: 1px solid #79747E;
-    background: #FFFBFE;
-    border-radius: 12px;
-    margin: 5px;
-    width: 1; 
-  
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    color: var(--label);
 }
 
-.header__flex {
+body {
+    position: relative;
+    z-index: -3;
+    background-color: var(--bg);
+    /* background-color: var(--primary-color); */
+    height: 100vh;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    background: linear-gradient(to top,
+            #2A2D32, #131313)
 }
 
-.header__flex_item {
-    display: flex;
-    justify-content: space-between;
+.button_ball {
+    position: relative;
+    background-color: var(--bg);
+    box-shadow:
+        -8px -8px 14px rgba(255, 255, 255, 0.07),
+        8px 8px 14px rgba(0, 0, 0, 0.3);
 }
 
-.header__img {
-    width: 60px;
-    margin: 10px;
+.button_ball::before,
+.button_ball::after {
+    --size: 0;
+    content: '';
+    z-index: 0;
+    position: absolute;
+    top: var(--size);
+    bottom: var(--size);
+    right: var(--size);
+    left: var(--size);
+    border-radius: 100%;
+    background: linear-gradient(to right bottom,
+            rgba(255, 255, 255, 0.07) 30%,
+            rgba(0, 0, 0, 0.30));
 }
 
-.text-h2 {
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 30px;
-    letter-spacing: 0.1px;
-    margin: 5px;
+/* style round convex button */
+.button_ball::after {
+    --size: -2px;
+    z-index: -1;
+    background:
+        linear-gradient(to left top,
+            rgba(255, 255, 255, 0.15) 30%,
+            rgba(0, 0, 0, 1));
 }
 
-.burger {
+/* shadow for panel */
+.shadow-panel {
+    box-shadow:
+        -18px -18px 20px rgba(255, 255, 255, 0.04),
+        18px 18px 20px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-panel_pressed {
+    box-shadow:
+        -18px -18px 20px rgba(255, 255, 255, 0.04),
+        18px 18px 20px rgba(0, 0, 0, 0.25),
+        inset -8px -8px 14px rgba(255, 255, 255, 0.04),
+        inset 8px 8px 14px rgba(0, 0, 0, 0.25)
+}
+
+/* shadow for button */
+.shadow {
+    box-shadow:
+        -4px -4px 8px rgba(255, 255, 255, 0.07),
+        4px 4px 8px rgba(0, 0, 0, 0.30);
+}
+
+.shadow:hover,
+.shadow_pressed {
+    box-shadow:
+        -4px -4px 8px rgba(255, 255, 255, 0.05),
+        4px 4px 8px rgba(0, 0, 0, 0.21),
+        inset -4px -4px 8px rgba(255, 255, 255, 0.05),
+        inset 4px 4px 8px rgba(0, 0, 0, 0.21)
+}
+
+/* style round  button */
+.button_round {
     width: 50px;
     height: 50px;
-    cursor: pointer;
-    padding: 0;
-    border: none;
+    border-radius: 50px;
     display: flex;
-    flex-direction: column;
+    font-size: 22px;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+/* layout */
+
+.wrapper {
+    position: relative;
+    z-index: -2;
+    padding: 20px 30px;
+    width: 390px;
+    max-height: 844px;
+    height: 100%;
+    border-radius: 40px;
+    background: linear-gradient(to bottom,
+            #2A2D32, #131313)
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer {
+    position: absolute;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    height: 78px;
+    background: url('./img/bottom-panel.svg') center/100% auto no-repeat;
+}
+
+/* header */
+.title {
+    font-size: 28px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    opacity: 80%;
+}
+
+.info i {
+    font-size: 1.4em;
+}
+
+
+.section {
+    padding: 20px 0;
+    margin-top: 100px;
+    width: 100%;
+    position: relative;
+    border-radius: 40px;
+    background: linear-gradient(
+        to bottom,
+        #27282a,
+        #24272C
+    )
+}
+
+.section::before {
+    --size: -1px;
+    content: '';
+    position: absolute;
+    top: var(--size);
+    right: var(--size);
+    bottom: var(--size);
+    left: var(--size);
+    z-index: -1;
+    border-radius: 40px;
+    background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.20),
+    rgba(0, 0, 0, 0));
+   
+}
+.section__item {
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.section__item i {
+    display: block;
+    height: 44px;
+    width: 44px;
+    display: flex;
     justify-content: center;
     align-items: center; 
-    background-color: var(--primary-color);
-    border-radius: 12px;
-    margin-right: 10px;
-  }
-  
-  .burger__line {
-    display: block;
-    width: 16px;
-    height: 3px;
-    background-color: #fff;
-    margin-bottom: 4px;
-  }
-  
-  .burger__line:last-child {
-    margin-bottom: 0;
-  }
+    font-size: 24px;    
+}
 
-.header__button {}
+.section__item i:first-child {
+    opacity: 0.5;
+}
+
+.section__item i:last-child {
+    font-size: 16px;
+    opacity: 0.5;
+    margin-left: auto;
+}
+
+ 
+.section__text {
+    margin-left: 10px;
+}
+
+.section__title {
+    font-size: 20px;
+    font-weight: 600px;
+}
+
+.section__info {
+    opacity: 0.6;
+}
+
+.footer {
+    position: absolute;
+    opacity: 0.7;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    height: 78px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+    background:rgb(23 23 23);
+}
+
+.footer__item {
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer__item i {
+    margin-bottom: 10px;
+}
